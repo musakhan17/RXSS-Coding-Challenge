@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Location API</title>
+  </head>
+
+  <body>
+    <p>Click the button to recieve a prompt. <br> Choose allow to recieve the coordinates of your location. </p>
+
+    <button onclick="getLocation()">Here</button>
+
+    <p id="location"></p>
+
+    <script>
+    var x = document.getElementById("location");
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "This location API is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
+    }
+    </script>
+    <br>
+    <form action="data.php" method="POST">
+      <h3>Input your coordinates here:</h3>
+
+      Latitude: <input type="text" name="latitude"></input>
+      Longitude: <input type="text" name="longitude"></input>
+
+      <input type="submit"></input>
+    </form>
+  </body>
+</html>
